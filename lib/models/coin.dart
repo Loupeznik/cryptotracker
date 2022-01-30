@@ -25,4 +25,13 @@ class Coin {
       currentPriceUSD: json['market_data']['current_price']['usd'],
     );
   }
+
+  factory Coin.fromJsonPopular(Map<String, dynamic> json) {
+    return Coin(
+      coinID: json['item']['id'],
+      name: json['item']['name'],
+      symbol: json['item']['symbol'],
+      image: json['item']['small'],
+    );
+  }
 }

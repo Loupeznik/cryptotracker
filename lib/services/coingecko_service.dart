@@ -12,19 +12,30 @@ class CoingeckoService {
     if (response.statusCode == 200) {
       return Coin.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception('Failed to fetch coin');
+      throw Exception('Failed to fetch coin data');
     }
   }
 
   Future<List<Coin>> getPopularCoins() async {
     final response = await http.get(Uri.parse(_baseUrl + 'search/trending'));
 
-    throw UnimplementedError();
+    if (response.statusCode == 200) {
+      final parsed =
+          jsonDecode(response.body)["coins"].cast<Map<String, dynamic>>();
+      return parsed.map<Coin>((json) => Coin.fromJsonPopular(json)).toList();
+    } else {
+      throw Exception('Failed to fetch coin data');
+    }
   }
 
   Future<List<Coin>> getAllCoins() async {
-    final response = await http.get(Uri.parse(_baseUrl + 'coins/list'));
+    final response = await http.get(Uri.parse(_baseUrl + 'coins'));
 
-    throw UnimplementedError();
+    if (response.statusCode == 200) {
+      final parsed = jsonDecode(response.body).cast<Map<String, dynamic>>();
+      return parsed.map<Coin>((json) => Coin.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to fetch coin data');
+    }
   }
 }

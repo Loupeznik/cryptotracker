@@ -37,22 +37,23 @@ class HomeScreenState extends State<HomeScreen>
       ),
       body: TabBarView(
         children: const <Widget>[
+          PopularCoinsScreen(),
           AllCoinsScreen(),
-          MyCoinsScreen(),
-          PopularCoinsScreen()
+          MyCoinsScreen()
         ],
         controller: controller,
       ),
+      backgroundColor: Colorscheme.darkCornflowerBlue,
       bottomNavigationBar: Material(
         color: Colorscheme.darkCornflowerBlue,
         child: TabBar(
           tabs: const <Tab>[
             Tab(
-              icon: Icon(Icons.bar_chart),
-              text: "Popular coins",
+              icon: Icon(Icons.calendar_today),
+              text: "Popular today",
             ),
             Tab(
-              icon: Icon(Icons.view_list),
+              icon: Icon(Icons.bar_chart),
               text: "All coins",
             ),
             Tab(
