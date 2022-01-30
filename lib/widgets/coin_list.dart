@@ -1,3 +1,4 @@
+import 'package:cryptotracker/services/local_database_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cryptotracker/models/coin.dart';
@@ -6,10 +7,12 @@ import 'list_item.dart';
 
 class CoinList extends StatelessWidget {
   final Future<List<Coin>> coins;
+  final LocalDatabaseService dbService;
 
   const CoinList({
     Key? key,
     required this.coins,
+    required this.dbService,
   }) : super(key: key);
 
   @override
@@ -21,7 +24,8 @@ class CoinList extends StatelessWidget {
           if (snapshot.hasData) {
             return ListView(
               children: [
-                for (var item in snapshot.data!) ListItem(null, item),
+                for (var item in snapshot.data!)
+                  ListItem(null, item, dbService),
               ],
             );
           } else if (snapshot.hasError) {

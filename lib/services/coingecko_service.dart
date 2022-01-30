@@ -38,4 +38,20 @@ class CoingeckoService {
       throw Exception('Failed to fetch coin data');
     }
   }
+
+  Future<List<Coin>> getCoinsByID(List<String> ids) async {
+    List<Coin> coins = List.empty(growable: true);
+
+    for (var id in ids) {
+      var response = await http.get(Uri.parse(_baseUrl + 'coins/' + id));
+
+      if (response.statusCode == 200) {
+        coins.add(Coin.fromJson(jsonDecode(response.body)));
+      } else {
+        continue;
+      }
+    }
+
+    return coins;
+  }
 }

@@ -42,7 +42,7 @@ class DetailScreen extends StatelessWidget {
                           Text(
                             '${data.name} (${data.symbol})'.toUpperCase(),
                             style: const TextStyle(
-                              fontSize: 30,
+                              fontSize: 20,
                               color: Colorscheme.blueGreen,
                               fontWeight: FontWeight.bold,
                             ),
@@ -77,7 +77,7 @@ class DetailScreen extends StatelessWidget {
                             ),
                             CoinDetailTile(
                               title: 'Price (CZK)',
-                              value: '\$${data.currentPriceCZK.toString()}',
+                              value: '${data.currentPriceCZK.toString()} Kč',
                             ),
                           ],
                         ),

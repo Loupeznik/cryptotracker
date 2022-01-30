@@ -5,21 +5,17 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:cryptotracker/screens/popular_coins.dart';
-import 'package:cryptotracker/widgets/list_item.dart';
+import 'package:cryptotracker/screens/detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    await tester.pumpWidget(const PopularCoinsScreen());
+    await tester.pumpWidget(DetailScreen(
+      coinID: 'bitcoin',
+    ));
 
-    expect(find.byType(ListItem), findsWidgets);
-    expect(find.byIcon(Icons.favorite_border), findsWidgets);
-
-    await tester.tap(find.byType(ListItem));
-    await tester.pump();
-
-    expect(find.byWidget(const CircularProgressIndicator()), findsOneWidget);
+    expect(find.byType(Text), findsWidgets);
+    expect(find.byType(Icon), findsOneWidget);
   });
 }

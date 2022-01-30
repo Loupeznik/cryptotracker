@@ -1,6 +1,7 @@
 import 'package:cryptotracker/screens/all_coins.dart';
 import 'package:cryptotracker/screens/my_coins.dart';
 import 'package:cryptotracker/screens/popular_coins.dart';
+import 'package:cryptotracker/services/local_database_service.dart';
 import 'package:cryptotracker/ui/colorscheme.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController controller;
+  late LocalDatabaseService dbService = LocalDatabaseService();
 
   @override
   void initState() {
@@ -36,10 +38,16 @@ class HomeScreenState extends State<HomeScreen>
         backgroundColor: Colorscheme.darkCornflowerBlue,
       ),
       body: TabBarView(
-        children: const <Widget>[
-          PopularCoinsScreen(),
-          AllCoinsScreen(),
-          MyCoinsScreen()
+        children: <Widget>[
+          PopularCoinsScreen(
+            dbService: dbService,
+          ),
+          AllCoinsScreen(
+            dbService: dbService,
+          ),
+          MyCoinsScreen(
+            dbService: dbService,
+          )
         ],
         controller: controller,
       ),
