@@ -22,6 +22,9 @@ class CoinList extends StatelessWidget {
         future: coins,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            if (snapshot.data!.isEmpty) {
+              return const Text('No coins found');
+            }
             return ListView(
               children: [
                 for (var item in snapshot.data!)
