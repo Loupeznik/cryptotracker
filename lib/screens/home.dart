@@ -3,6 +3,7 @@ import 'package:cryptotracker/screens/my_coins.dart';
 import 'package:cryptotracker/screens/popular_coins.dart';
 import 'package:cryptotracker/services/local_database_service.dart';
 import 'package:cryptotracker/ui/colorscheme.dart';
+import 'package:cryptotracker/widgets/disclaimer.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -36,6 +37,9 @@ class HomeScreenState extends State<HomeScreen>
       appBar: AppBar(
         title: const Text("CryptoTracker"),
         backgroundColor: Colorscheme.darkCornflowerBlue,
+        actions: const [
+          Disclaimer(),
+        ],
       ),
       body: TabBarView(
         children: <Widget>[

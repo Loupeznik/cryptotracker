@@ -1,5 +1,6 @@
 import 'package:cryptotracker/ui/colorscheme.dart';
 import 'package:cryptotracker/widgets/coin_detail_tile.dart';
+import 'package:cryptotracker/widgets/disclaimer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cryptotracker/models/coin.dart';
@@ -21,6 +22,9 @@ class DetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(coinName ?? coinID),
         backgroundColor: Colorscheme.darkCornflowerBlue,
+        actions: const [
+          Disclaimer(),
+        ],
       ),
       body: Center(
         child: FutureBuilder<Coin>(
@@ -72,12 +76,39 @@ class DetailScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             CoinDetailTile(
+                              title: 'Price (CZK)',
+                              value: '${data.currentPriceCZK.toString()} Kč',
+                            ),
+                            CoinDetailTile(
                               title: 'Price (USD)',
                               value: '\$${data.currentPriceUSD.toString()}',
                             ),
                             CoinDetailTile(
-                              title: 'Price (CZK)',
-                              value: '${data.currentPriceCZK.toString()} Kč',
+                              title: 'Daily low (USD)',
+                              value: '\$${data.dailyLowUSD.toString()}',
+                            ),
+                            CoinDetailTile(
+                              title: 'Daily high (USD)',
+                              value: '\$${data.dailyHighUSD.toString()}',
+                            ),
+                            CoinDetailTile(
+                              title: 'Daily price change (USD)',
+                              value: '\$${data.dailyPriceChangeUSD.toString()}',
+                            ),
+                            CoinDetailTile(
+                              title: 'Daily price change',
+                              value:
+                                  '${data.dailyPriceChangePercentage.toString()} %',
+                            ),
+                            CoinDetailTile(
+                              title: 'Weekly price change',
+                              value:
+                                  '${data.weeklyPriceChangePercentage.toString()} %',
+                            ),
+                            CoinDetailTile(
+                              title: 'Monthly price change',
+                              value:
+                                  '${data.monthlyPriceChangePercentage.toString()} %',
                             ),
                           ],
                         ),
